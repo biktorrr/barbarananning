@@ -1,0 +1,113 @@
+# Queries based on competency questions identified by Daan Raven
+
+#What are the top two artworks in the Verre Églomisé collection of Nanning sorted by height?	
+SELECT DISTINCT ?Artwork ?ArtworkLabel ?Height
+WHERE {
+    ?Artwork rdf:type BarbaraNanning:Glass_Artwork.
+    ?Artwork rdfs:label ?ArtworkLabel.
+    ?Artwork BarbaraNanning:Has-Height ?Height
+} ORDER BY DESC(?Height) LIMIT 2
+
+#What equipment is used for sandblasting of the artworks within the Verre Églomisé collection of Nanning and how can this equipment be described?	
+SELECT DISTINCT ?EquipmentLabel ?EquipmentDescription
+WHERE {
+    ?Activity rdf:type BarbaraNanning:Sandblasting.
+    ?Equipment BarbaraNanning:Used-For ?Activity.
+    ?Equipment rdfs:label ?EquipmentLabel.
+    ?Equipment rdfs:comment ?EquipmentDescription. }
+
+#Which artworks in the Verre Églomisé collection of Nanning are currently stored in her private collection?	
+SELECT DISTINCT ?Artwork ?ArtworkLabel
+WHERE {
+    ?Artwork rdf:type BarbaraNanning:Glass_Artwork.
+    ?Artwork BarbaraNanning:Part-Of BarbaraNanning:CollectionOfBarbaraNanning.
+    ?Artwork rdfs:label ?ArtworkLabel. }
+
+#What is the description of the technique that was last applied in the creation process of the ‘Go with the Flow’ artwork from the Verre Églomisé collection of Nanning and which parties were involved in this technique?	
+SELECT ?ActivityType ?DescriptionTechnique ?ActorName
+WHERE {
+    ?CreationEvent BarbaraNanning:Created BarbaraNanning:Artwork_77.
+    ?Activity BarbaraNanning:Finishes ?CreationEvent.
+    ?Activity rdf:type ?ActivityType.
+    ?ActivityType rdfs:comment ?DescriptionTechnique.
+    ?Activity BarbaraNanning:Involves ?Actor.
+    ?Actor rdfs:label ?ActorName }
+
+#What are the links to the digital representations of the artworks in the Verre Églomisé collection? 	
+SELECT ?LabelArtwork ?LabelLinkDigitalImage
+WHERE {
+    ?Artwork rdf:type BarbaraNanning:Glass_Artwork.
+    ?Artwork rdfs:label ?LabelArtwork.
+    ?Artwork BarbaraNanning:Shown-By ?LinkDigitalImage.
+    ?LinkDigitalImage rdfs:label ?LabelLinkDigitalImage. }
+
+#What are the top three artworks in the Coloured Shadows collection of Nanning sorted by descending year of completion?	
+
+SELECT DISTINCT ?Artwork ?ArtworkLabel ?LabelYearOfCompletion
+WHERE {
+    ?Artwork rdf:type BarbaraNanning:Glass_Artwork.
+    ?Artwork rdfs:label ?ArtworkLabel.
+    FILTER( strStarts(?ArtworkLabel, "Coloured Shadows")).
+    ?Artwork BarbaraNanning:Created-By ?CreationEvent.
+    ?CreationEvent BarbaraNanning:Finishes-With ?FinalActivity.
+    ?FinalActivity BarbaraNanning:Has-Duration ?YearOfCompletion.
+    ?YearOfCompletion rdfs:label ?LabelYearOfCompletion. } ORDER BY DESC(?YearOfCompletion) LIMIT 3
+
+
+# What activities are part of the creation process of the ‘Beneath the Water’ artwork in the Coloured Shadows and where have these activities taken place?	
+SELECT DISTINCT ?NameActivity ?NameLocation
+WHERE {
+    ?Artwork rdf:type BarbaraNanning:Glass_Artwork.
+    ?Artwork rdfs:label ?ArtworkLabel.
+    FILTER( strStarts(?ArtworkLabel, "Coloured Shadows Beneath the Water")).
+    ?Artwork BarbaraNanning:Created-By ?CreationEvent.
+    ?CreationEvent BarbaraNanning:Consists-Of ?Activity.
+    ?Activity BarbaraNanning:Located-In ?Location.
+    ?Activity rdfs:label ?NameActivity.
+    ?Location rdfs:label ?NameLocation. }
+
+
+# What are the materials processed in the creation process of the ‘Coral Reef’ artwork from the Coloured Shadows collection of Nanning and during which activities were these materials processed?	
+SELECT DISTINCT ?NameActivity ?NameMaterial
+WHERE {
+    ?Artwork rdf:type BarbaraNanning:Glass_Artwork.
+    ?Artwork rdfs:label ?ArtworkLabel.
+    FILTER( strStarts(?ArtworkLabel, "Coloured Shadows Coral Reef")).
+    ?Artwork BarbaraNanning:Created-By ?CreationEvent.
+    ?CreationEvent BarbaraNanning:Consists-Of ?Activity.
+    ?Activity BarbaraNanning:Processes ?Material.
+    ?Activity rdfs:label ?NameActivity.
+    ?Material rdfs:label ?NameMaterial. }
+
+
+
+# Yasgui sparql exampples
+
+
+# Show me (in Gallery) all objects with title and image
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX bnan: <http://semanticweb.cs.vu.nl/test/barbarananning/>
+SELECT * WHERE {
+  ?sub bnan:Shown-By ?image .
+  ?sub rdfs:label ?label
+  bind('''<h2>{{label}}</h2>
+<img src="{{image}}">'''^^rdf:HTML as ?widget)
+} LIMIT 10
+
+
+# Show me (in Gallery) all objects made by "Jiří Pačinek Glass Lindava" (person in Wikidata)
+
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX bnan: <http://semanticweb.cs.vu.nl/test/barbarananning/>
+SELECT * WHERE {
+  ?sub bnan:Made-By ?madeby.
+  ?madeby owl:sameAs <http://www.wikidata.org/entity/Q60337044>.
+  ?sub bnan:Shown-By ?image .
+  ?sub rdfs:label ?label
+  bind('''<h2>{{label}}</h2>
+<img src="{{image}}">'''^^rdf:HTML as ?widget)
+} LIMIT 10
