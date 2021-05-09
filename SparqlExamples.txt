@@ -111,3 +111,27 @@ SELECT * WHERE {
   bind('''<h2>{{label}}</h2>
 <img src="{{image}}">'''^^rdf:HTML as ?widget)
 } LIMIT 10
+
+
+# Show me (in Geo) the locations of creation steps for various works
+
+PREFIX wd: <http://www.wikidata.org/prop/direct/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX iisgv: <https://iisg.amsterdam/vocab/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX bn: <http://semanticweb.cs.vu.nl/test/barbarananning/>
+
+SELECT (concat('hsv', (strbefore(strafter(str(?aw),"_"),"_"))) as ?wktColor) ?wkt (concat(?awlabel, ' step: ' , ?cawsteplabel, ' executed in: ', ?loclabel) as ?wktLabel) WHERE {  
+  ?aw bn:Created-By ?caw .
+  ?aw rdfs:label ?awlabel.
+  ?caw bn:Consists-Of ?cawstep.
+  ?cawstep  bn:Located-In ?loc.
+  ?cawstep rdfs:label ?cawsteplabel.
+  ?loc owl:sameAs ?sameloc.
+  ?loc rdfs:label ?loclabel.
+  ?sameloc wd:P625 ?wkt
+}
+LIMIT 100
