@@ -1,0 +1,25 @@
+@prefix            owl: <http://www.w3.org/2002/07/owl#> .
+@prefix            xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix           rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix            rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix BarbaraNanning: <http://semanticweb.cs.vu.nl/test/barbarananning/> .
+
+
+
+BarbaraNanning:Artwork_18_64 rdfs:seeAlso <https://www.eeuwige-beweging.nl/about/monografien/eeuwige-beweging/attachment/0/>	.
+BarbaraNanning:Artwork_36 rdfs:seeAlso <https://www.eeuwige-beweging.nl/about/monografien/eeuwige-beweging/verstilde-beweging/attachment/36/>.
+BarbaraNanning:Artwork_39 rdfs:seeAlso <https://www.eeuwige-beweging.nl/about/monografien/eeuwige-beweging/tsjechie-als-glasland/attachment/39/>.
+BarbaraNanning:Artwork_43 rdfs:seeAlso <https://www.eeuwige-beweging.nl/about/monografien/eeuwige-beweging/verre-eglomise-en-ewiger-fruhling/attachment/43/>.
+BarbaraNanning:Artwork_44 rdfs:seeAlso <https://www.eeuwige-beweging.nl/about/monografien/eeuwige-beweging/verre-eglomise-en-ewiger-fruhling/attachment/44/>.
+BarbaraNanning:Artwork_46 rdfs:seeAlso <https://www.eeuwige-beweging.nl/about/monografien/eeuwige-beweging/verstilde-beweging/attachment/46/>.
+BarbaraNanning:Artwork_73 rdfs:seeAlso <https://www.eeuwige-beweging.nl/about/monografien/eeuwige-beweging/verre-eglomise-en-ewiger-fruhling/attachment/73/>.
+BarbaraNanning:Artwork_74 rdfs:seeAlso <https://www.eeuwige-beweging.nl/about/monografien/eeuwige-beweging/verre-eglomise-en-ewiger-fruhling/attachment/74/>.
+BarbaraNanning:Artwork_75 rdfs:seeAlso <https://www.eeuwige-beweging.nl/about/monografien/eeuwige-beweging/verre-eglomise-en-ewiger-fruhling/attachment/75/>.
+BarbaraNanning:Artwork_76 rdfs:seeAlso <https://www.eeuwige-beweging.nl/about/monografien/eeuwige-beweging/verre-eglomise-en-ewiger-fruhling/attachment/76/>.
+BarbaraNanning:Artwork_77 rdfs:seeAlso <https://www.eeuwige-beweging.nl/about/monografien/eeuwige-beweging/verre-eglomise-en-ewiger-fruhling/attachment/77/>.
+BarbaraNanning:Artwork_78 rdfs:seeAlso <https://www.eeuwige-beweging.nl/about/monografien/eeuwige-beweging/verre-eglomise-en-ewiger-fruhling/attachment/78/>.
+BarbaraNanning:Artwork_79 rdfs:seeAlso <https://www.eeuwige-beweging.nl/about/monografien/eeuwige-beweging/verre-eglomise-en-ewiger-fruhling/attachment/79/>.
+BarbaraNanning:Artwork_80 rdfs:seeAlso <https://www.eeuwige-beweging.nl/about/monografien/eeuwige-beweging/verre-eglomise-en-ewiger-fruhling/attachment/80/>.
+BarbaraNanning:Artwork_17_33 rdfs:seeAlso <https://www.eeuwige-beweging.nl/wp-content/uploads/2020/05/90-scaled.jpg>.
+
+
